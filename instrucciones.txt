@@ -1,8 +1,0 @@
-SUSCRIPCION: Almacena los correos electronicos para luego enviar el aviso para que
-    puedan descargar el juego cuando este disponible.
-
-BETA TESTER: Almacena los correos electronicos para enviar una copia actual del
-    juego en estado de desarrollo para revisar los bugs y aportar ideas.
-
-INSCRIPCION: Almacena los correos electronicos para reclutar personal para que
-    forme parte del equipo de desarrollo para el juego.
