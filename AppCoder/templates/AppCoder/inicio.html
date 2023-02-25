@@ -1,0 +1,25 @@
+{% extends "AppCoder/padre.html" %}
+
+{% load static %}
+
+{% block titulo %}
+    {{mensaje}}
+{% endblock %}
+
+{% block contenidoQueCambia %}
+
+
+        <!-- Masthead-->
+        <header class="masthead">
+            <div class="text-center text-white " style="font-size:150% ">
+            </div>
+        </header>
+
+    <!--Aquí va lo que cambia, y lo asociado a está vista :) -->
+<div Align="center" style="color:white; font-size:125%; width: 80%; margin: auto;">
+    La Farmería Online es un videojuego MMORPG medieval fantástico con gráficos en 2D y vista aérea. Esta inspirado en los mundos que se representan en los juegos clásicos del género y de las series de .Hack//.
+    Se esta desarrollando para poder disfrutarlo en computadoras y dispositivos moviles con un servidor unificado.
+
+</div>
+
+{% endblock %}

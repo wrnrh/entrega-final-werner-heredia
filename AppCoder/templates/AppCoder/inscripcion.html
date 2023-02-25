@@ -1,0 +1,39 @@
+{% extends "AppCoder/padre.html" %}
+
+{% load static %}
+
+{% block contenidoQueCambia %}
+
+
+    <!--Aquí va lo que cambia, y lo asociado a está vista :) -->
+    <h1 Align="center">Inscripcion</h1>
+    <div Align="center">
+        En esta sección te inscribirás para ser parte del proyecto: programando, diseñando, componiendo, etc.
+    </div>
+    
+    {% if miFormulario.errors %}
+
+    <p style="color: red;"Align="center"> Están mal los datos, revisar</p>
+
+    {% endif %}
+
+
+    <form action="" method="POST" Align="center">{% csrf_token %}
+
+        <!-- Acá está la magia de Django-->
+        
+        <table Align="center">
+
+            {{ miFormulario.as_table }}
+
+
+        </table>
+
+
+        <input type="submit", value="Enviar">
+
+    </form>
+
+  
+
+{% endblock %}

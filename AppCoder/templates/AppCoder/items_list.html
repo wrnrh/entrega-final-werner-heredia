@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        {% load static %}
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>La Farmería Online</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="{%static 'AppCoder/assets/farmeria.ico' %}" />
+        <!-- Bootstrap icons-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" type="text/css" />
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="{%static 'AppCoder/css/styles.css' %}" rel="stylesheet" />
+
+
+    </head>
+    <body>
+        <!-- Navigation-->
+        <nav class="navbar navbar-light bg-light static-top">
+            <div class="container">
+                <a class="navbar-brand" href="{% url 'Inicio' %}">Inicio</a>
+                <a style="color:lime" class="navbar-brand" href="{% url 'listaitems' %}">Items</a>
+                <a class="navbar-brand" href="{% url 'listaresenas' %}">Reseñas</a>
+                {% if user.is_authenticated %}
+                    <a class="navbar-brand" style="color:fuchsia; text-transform: capitalize;"> {{ user.get_username }}</a>
+                    <a class="navbar-brand" href="{% url 'Logout'%}">Desconectar</a>
+                {% else %}
+                    <a class="navbar-brand" href="{% url 'Register' %}">Registrar</a>
+                    <a class="navbar-brand" href="{% url 'Login' %}">Conectar</a>
+                {% endif %}
+                <a class="navbar-brand" href="{% url 'sobremi' %}">Sobre mi</a>
+            </div>
+
+            <div action="" method="POST" Align="center"
+            style="margin: auto; margin-top: 10%; margin-bottom: 8%;
+            width: 50%; 
+            height: 75%; 
+            border: 0px solid aqua;
+            ">
+
+                <h2 style="margin-bottom: 10%;">
+                    Items
+                    {% if user.is_staff %}
+                        <a style="font-size: 50%; color:gray; " href="{% url 'crearitem' %}">Agregar</a> 
+                    {% endif  %}
+                </h2>
+                <!-- Espadas -->
+                    {% for e in object_list %}   
+                    {%  if e.tipo == "Espada" %}
+                <div>
+                    {%  if e.imagen %}
+                        <img src="{% static e.imagen.url %}" style="width:10%; float:right; " alt="error de imagen">
+                    {% endif  %}
+                        <h4 ><li>{{e.nombre}}</li></h4>
+                        <p style="color:white" Align="center">
+                            Tipo: {{e.tipo}} <br>
+                            Daño físico: {{e.dano_f}} <br>
+                            Daño mágico: {{e.dano_m}} <br>
+                            Descripción: {{e.descripcion}}</p>
+                            {% if user.is_staff %}
+                                <a style="color:gray" href="{% url 'cambiaritem' e.id %}">Editar</a>
+                                <a> - </a>
+                                <a style="color:gray"  href="{% url 'borraritem' e.id %}">Borrar</a> 
+                            {% endif  %}
+                            <hr size=5><br><br><br>
+                </div>
+                <div style="clear: both;"></div>
+                    {% endif  %}
+                {%  endfor    %}
+                <!-- Arcos -->
+                    {% for e in object_list %}   
+                    {%  if e.tipo == "Arco" %}
+                    <div>
+                        {%  if e.imagen %}
+                            <img src="{% static e.imagen.url %}" style="width:10%; float:right; " alt="error de imagen">
+                        {% endif  %}
+                            <h4 ><li>{{e.nombre}}</li></h4>
+                            <p style="color:white" Align="center">
+                            Tipo: {{e.tipo}} <br>
+                            Daño físico: {{e.dano_f}} <br>
+                            Daño mágico: {{e.dano_m}} <br>
+                            Descripción: {{e.descripcion}}</p>
+                            {% if user.is_authenticated %}
+                                <a style="color:gray" href="{% url 'cambiaritem' e.id %}">Editar</a>
+                                <a> - </a>
+                                <a style="color:gray"  href="{% url 'borraritem' e.id %}">Borrar</a> 
+                            {% endif  %}
+                            <hr size=5><br><br><br>
+                    </div>
+                    <div style="clear: both;"></div>
+                    {% endif  %}
+                {%  endfor    %}
+                <!-- Baculos -->
+                    {% for e in object_list %}   
+                    {%  if e.tipo == "Baculo" %}
+                    <div >
+                        {%  if e.imagen %}
+                            <img src="{% static e.imagen.url %}" style="width:10%; float:right; " alt="error de imagen">
+                        {% endif  %}
+                            <h4 ><li>{{e.nombre}}</li></h4>
+                            <p style="color:white" Align="center">
+                            Tipo: {{e.tipo}} <br>
+                            Daño físico: {{e.dano_f}} <br>
+                            Daño mágico: {{e.dano_m}} <br>
+                            Descripción: {{e.descripcion}}</p>   
+                            {% if user.is_authenticated %}
+                                <a style="color:gray" href="{% url 'cambiaritem' e.id %}">Editar</a>
+                                <a> - </a>
+                                <a style="color:gray"  href="{% url 'borraritem' e.id %}">Borrar</a> 
+                            {% endif  %}
+                            <hr size=5><br><br><br>
+                    </div>
+                    <div style="clear: both;"></div>
+                    {% endif  %}
+                {%  endfor    %}
+            </div>
+        </nav>
+        
+<!--
+        {% for e in dato %}   
+                        
+        <div style="float:left; border-right: 2px solid aqua;">
+                <h4><li>{{e.nombre}}</li></h4>
+                <p>Tipo: {{e.tipo}}</p>
+                <p>Daño físico: {{e.dano_f}}</p>
+                <p>Daño mágico: {{e.dano_m}}</p>   
+                {%  if e.imagen %}
+                    <img  src="{% static e.imagen.url %}" style="width:50%" alt="error de imagen">
+                
+                {% endif  %}
+                <p>Descripción: {{e.descripcion}}</p>   
+                <!--<hr size=5>
+    
+            </div>
+            {%  endfor    %}
+-->
+
+     
+        <!-- Footer-->
+        <footer class="footer bg-light">
+            <div class="container">
+                <div class="row">
+                    <div class="text-center">
+                        <ul class="list-inline mb-0">
+                            <li class="list-inline-item">
+                                <a style="color:lime"  href="https://www.instagram.com/lafarmeriaonline/">Visitar <i class="bi-instagram fs-3"></i></a>
+                            </li>
+                        </ul>
+                        <div Align="right">
+                            <br>
+                            <p class="text-muted small mb-4 mb-lg-0">&copy; La Farmería Online 2023.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="{% static 'AppCoder/js/scripts.js' %}"></script>
+        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+        <!-- * *                               SB Forms JS                               * *-->
+        <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
+        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+        <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+    </body>
+</html>
